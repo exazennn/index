@@ -53,7 +53,7 @@
             font-family: var(--font-family);
             background-color: var(--bg-primary);
             color: var(--white);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
         }
@@ -89,9 +89,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
-            background: rgba(13, 13, 13, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-subtle);
             transition: var(--transition);
         }
@@ -109,7 +109,7 @@
             color: var(--white);
             font-weight: 800;
             font-size: 1.5rem;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.025em;
             transition: var(--transition);
         }
 
@@ -118,15 +118,21 @@
         }
 
         .nav-logo .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 900;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .nav-logo .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
         }
 
         .nav-links {
@@ -142,7 +148,7 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: var(--transition);
-            letter-spacing: 0.01em;
+            letter-spacing: 0.015em;
             position: relative;
         }
 
@@ -175,6 +181,7 @@
             text-decoration: none;
             transition: var(--transition);
             box-shadow: 0 4px 20px var(--purple-glow);
+            letter-spacing: 0.02em;
         }
 
         .nav-cta:hover {
@@ -227,7 +234,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 2.25rem;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 1px solid var(--border-subtle);
         }
@@ -242,13 +249,14 @@
             font-size: 1.3rem;
             font-weight: 600;
             transition: var(--transition);
+            letter-spacing: 0.01em;
         }
 
         .mobile-menu a:hover {
             color: var(--purple-secondary);
         }
         .mobile-menu .nav-cta {
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             font-size: 1rem;
             padding: 0.8rem 2rem;
         }
@@ -278,7 +286,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: calc(var(--nav-height) + 2rem) 2rem 4rem;
+            padding: calc(var(--nav-height) + 3rem) 2rem 5rem;
             position: relative;
             overflow: hidden;
         }
@@ -352,8 +360,8 @@
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--purple-secondary);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
+            margin-bottom: 1.75rem;
+            letter-spacing: 0.04em;
         }
 
         .hero-badge .dot {
@@ -379,9 +387,9 @@
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 900;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            letter-spacing: -0.035em;
+            line-height: 1.12;
+            margin-bottom: 1.75rem;
             color: var(--white);
         }
 
@@ -397,9 +405,10 @@
             font-size: clamp(1rem, 1.5vw, 1.2rem);
             color: var(--text-muted);
             font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            letter-spacing: 0.005em;
         }
 
         .hero-buttons {
@@ -407,7 +416,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         .btn {
@@ -419,7 +428,7 @@
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.015em;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -507,7 +516,7 @@
             padding: 0.35rem 0.8rem;
             font-size: 0.75rem;
             color: var(--text-muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         .browser-body {
@@ -517,6 +526,15 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+        }
+
+        .portfolio-video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            object-fit: cover;
+            max-height: 220px;
         }
 
         .mockup-hero {
@@ -579,40 +597,89 @@
             background: rgba(255, 255, 255, 0.02);
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 2rem 2rem;
+            padding: 1.5rem 0;
             position: relative;
             z-index: 2;
+            overflow: hidden;
+            cursor: default;
+            /* Premium fade edges */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
 
-        .trust-bar-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
+        .trust-bar-track {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
+            width: max-content;
+            animation: tickerScroll 35s linear infinite;
+            align-items: center;
+            gap: 4rem;
+            padding: 0 2rem;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .trust-bar-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .trust-bar-group {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-shrink: 0;
+            padding: 0 2rem;
         }
 
         .trust-item {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.75rem;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
+            letter-spacing: 0.015em;
             transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
         }
+
+        /* Premium separator dot between items */
+        .trust-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+        }
+
         .trust-item:hover {
             color: var(--white);
         }
+
         .trust-item i {
             color: var(--purple-secondary);
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.5));
         }
 
         /* ===== SECTION COMMON ===== */
         .section {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
             position: relative;
         }
 
@@ -625,10 +692,10 @@
             display: inline-block;
             font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--purple-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             background: rgba(124, 58, 237, 0.1);
             padding: 0.35rem 1rem;
             border-radius: 50px;
@@ -638,18 +705,19 @@
         .section-title {
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            line-height: 1.22;
+            margin-bottom: 1.25rem;
             color: var(--white);
         }
 
         .section-subtitle {
             color: var(--text-muted);
             font-size: 1.05rem;
-            max-width: 600px;
-            margin-bottom: 3rem;
-            line-height: 1.7;
+            max-width: 620px;
+            margin-bottom: 3.5rem;
+            line-height: 1.75;
+            letter-spacing: 0.005em;
         }
 
         .text-center {
@@ -664,14 +732,14 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
 
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
-            padding: 2rem;
+            padding: 2.25rem;
             transition: var(--transition);
             cursor: default;
             position: relative;
@@ -710,21 +778,23 @@
             align-items: center;
             justify-content: center;
             font-size: 1.4rem;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.35rem;
             box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
         }
 
         .service-card h3 {
             font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.005em;
+            line-height: 1.35;
         }
 
         .service-card p {
             color: var(--text-muted);
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            letter-spacing: 0.005em;
             position: relative;
             z-index: 1;
         }
@@ -733,7 +803,7 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 2.25rem;
         }
 
         .portfolio-item {
@@ -763,6 +833,14 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+        }
+
+        .portfolio-browser .browser-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            object-fit: cover;
         }
 
         .portfolio-preview {
@@ -796,18 +874,21 @@
         }
 
         .portfolio-info {
-            padding: 1.25rem 1.5rem 1.5rem;
+            padding: 1.5rem 1.75rem 1.75rem;
         }
         .portfolio-info h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
         }
         .portfolio-info p {
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.5;
+            margin-bottom: 1.1rem;
+            line-height: 1.65;
+            letter-spacing: 0.005em;
         }
         .portfolio-link {
             color: var(--purple-secondary);
@@ -818,6 +899,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+            letter-spacing: 0.01em;
         }
         .portfolio-link:hover {
             gap: 0.7rem;
@@ -828,12 +910,12 @@
         .why-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
 
         .why-card {
             text-align: center;
-            padding: 2.5rem 1.5rem;
+            padding: 2.75rem 1.75rem;
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
@@ -848,7 +930,7 @@
         .why-icon {
             width: 60px;
             height: 60px;
-            margin: 0 auto 1.25rem;
+            margin: 0 auto 1.5rem;
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(168, 85, 247, 0.1));
             border-radius: 50%;
             display: flex;
@@ -862,19 +944,22 @@
         .why-card h3 {
             font-size: 1.05rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.005em;
+            line-height: 1.35;
         }
         .why-card p {
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            letter-spacing: 0.005em;
         }
 
         /* ===== PROCESS ===== */
         .process-timeline {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 2.25rem;
             position: relative;
         }
 
@@ -909,7 +994,7 @@
             justify-content: center;
             font-weight: 800;
             font-size: 1.1rem;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.25rem;
             position: relative;
             z-index: 1;
             box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
@@ -918,14 +1003,17 @@
         .process-step h3 {
             font-size: 1.05rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.005em;
+            line-height: 1.35;
             position: relative;
             z-index: 1;
         }
         .process-step p {
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            letter-spacing: 0.005em;
             position: relative;
             z-index: 1;
         }
@@ -934,14 +1022,14 @@
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
 
         .testimonial-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
-            padding: 2rem;
+            padding: 2.25rem;
             transition: var(--transition);
         }
         .testimonial-card:hover {
@@ -953,15 +1041,16 @@
         .testimonial-stars {
             color: #FBBF24;
             font-size: 0.9rem;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
+            margin-bottom: 1.1rem;
+            letter-spacing: 2.5px;
         }
         .testimonial-card blockquote {
             font-size: 0.95rem;
             color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 1.75rem;
             font-style: italic;
+            letter-spacing: 0.005em;
         }
 
         .testimonial-author {
@@ -984,10 +1073,12 @@
         .testimonial-author .name {
             font-weight: 600;
             font-size: 0.9rem;
+            letter-spacing: 0.005em;
         }
         .testimonial-author .role {
             font-size: 0.78rem;
             color: var(--text-muted);
+            letter-spacing: 0.01em;
         }
 
         /* ===== STATISTICS ===== */
@@ -995,13 +1086,13 @@
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(168, 85, 247, 0.04));
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: var(--max-width);
             margin: 0 auto;
         }
@@ -1018,18 +1109,19 @@
             -webkit-text-fill-color: transparent;
             color: transparent;
             letter-spacing: -0.03em;
-            line-height: 1.1;
+            line-height: 1.15;
         }
         .stat-label {
             color: var(--text-muted);
             font-size: 0.95rem;
             font-weight: 500;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
+            letter-spacing: 0.01em;
         }
 
         /* ===== CONTACT CTA ===== */
         .contact-section {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
             position: relative;
             overflow: hidden;
         }
@@ -1059,21 +1151,23 @@
             font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 900;
             letter-spacing: -0.03em;
-            margin-bottom: 1rem;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
         }
         .contact-content p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            line-height: 1.75;
+            letter-spacing: 0.005em;
         }
 
         .contact-details {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 1.75rem;
+            margin-bottom: 2.5rem;
         }
         .contact-detail {
             display: flex;
@@ -1086,6 +1180,7 @@
             border-radius: 50px;
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
+            letter-spacing: 0.01em;
         }
         .contact-detail:hover {
             border-color: var(--border-hover);
@@ -1104,7 +1199,7 @@
         }
 
         .map-container {
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid var(--border-subtle);
@@ -1125,7 +1220,7 @@
         .footer {
             background: rgba(0, 0, 0, 0.4);
             border-top: 1px solid var(--border-subtle);
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
 
         .footer-inner {
@@ -1134,13 +1229,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .footer-logo {
             font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.025em;
             text-decoration: none;
             color: var(--white);
         }
@@ -1150,7 +1245,7 @@
 
         .footer-nav {
             display: flex;
-            gap: 2rem;
+            gap: 2.25rem;
             flex-wrap: wrap;
             justify-content: center;
             list-style: none;
@@ -1159,6 +1254,7 @@
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.9rem;
+            letter-spacing: 0.01em;
             transition: var(--transition);
         }
         .footer-nav a:hover {
@@ -1195,6 +1291,8 @@
             color: var(--text-muted);
             font-size: 0.85rem;
             text-align: center;
+            letter-spacing: 0.01em;
+            line-height: 1.7;
         }
         .footer-copyright a {
             color: var(--purple-secondary);
@@ -1261,14 +1359,31 @@
             }
 
             .hero {
-                padding: calc(var(--nav-height) + 1rem) 1.25rem 3rem;
+                padding: calc(var(--nav-height) + 1.5rem) 1.25rem 3.5rem;
             }
             .hero h1 {
                 font-size: clamp(2rem, 8vw, 3rem);
+                margin-bottom: 1.5rem;
+            }
+            .hero-subheadline {
+                margin-bottom: 2rem;
+            }
+            .hero-buttons {
+                margin-bottom: 2.75rem;
             }
 
             .section {
-                padding: 4rem 1.25rem;
+                padding: 4.5rem 1.25rem;
+            }
+            .contact-section {
+                padding: 4.5rem 1.25rem;
+            }
+            .stats-section {
+                padding: 3.75rem 1.25rem;
+            }
+
+            .section-subtitle {
+                margin-bottom: 2.75rem;
             }
 
             .services-grid {
@@ -1288,10 +1403,21 @@
             }
             .stats-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
             }
-            .trust-bar-inner {
-                gap: 1.5rem;
+            .trust-bar {
+                padding: 1rem 0;
+            }
+            .trust-bar-track {
+                gap: 2.5rem;
+                padding: 0 1rem;
+            }
+            .trust-bar-group {
+                gap: 2.5rem;
+                padding: 0 1rem;
+            }
+            .trust-item:not(:last-child)::after {
+                right: -1.75rem;
             }
             .hero-buttons {
                 flex-direction: column;
@@ -1316,18 +1442,34 @@
             .contact-details {
                 flex-direction: column;
                 align-items: center;
+                gap: 1.25rem;
             }
             .map-container iframe {
                 height: 250px;
+            }
+            .footer {
+                padding: 3rem 1.25rem;
+            }
+            .footer-inner {
+                gap: 1.75rem;
+            }
+            .footer-nav {
+                gap: 1.5rem;
+            }
+            .nav-logo .logo-icon {
+                width: 36px;
+                height: 36px;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 1.8rem;
+                letter-spacing: -0.03em;
             }
             .section-title {
                 font-size: 1.6rem;
+                letter-spacing: -0.02em;
             }
             .process-step {
                 padding: 1.5rem 1rem;
@@ -1335,6 +1477,22 @@
             .footer-nav {
                 gap: 1.2rem;
                 font-size: 0.8rem;
+            }
+            .section {
+                padding: 3.5rem 1.1rem;
+            }
+            .contact-section {
+                padding: 3.5rem 1.1rem;
+            }
+            .stats-section {
+                padding: 3rem 1.1rem;
+            }
+            .section-subtitle {
+                margin-bottom: 2.25rem;
+            }
+            .nav-logo .logo-icon {
+                width: 32px;
+                height: 32px;
             }
         }
     </style>
@@ -1344,7 +1502,9 @@
     <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <a href="#home" class="nav-logo">
-            <div class="logo-icon">E</div>
+            <div class="logo-icon">
+                <img src="logo.png" alt="logo">
+            </div>
             <span>exazen</span>
         </a>
         <ul class="nav-links">
@@ -1416,7 +1576,7 @@
                 <div class="browser-url">exazen.com</div>
             </div>
             <div class="browser-body">
-               <video class="portfolio-video" autoplay muted loop playsinline>
+                <video class="portfolio-video" autoplay muted loop playsinline>
                     <source src="v1.mp4" type="video/mp4">
                     Your browser does not support video.
                 </video>
@@ -1424,13 +1584,21 @@
         </div>
     </section>
 
-    <!-- TRUST BAR -->
+    <!-- TRUST BAR TICKER -->
     <div class="trust-bar">
-        <div class="trust-bar-inner">
-            <div class="trust-item"><i class="fas fa-palette"></i> Modern Design</div>
-            <div class="trust-item"><i class="fas fa-bolt"></i> Fast Loading</div>
-            <div class="trust-item"><i class="fas fa-mobile-alt"></i> Mobile Optimized</div>
-            <div class="trust-item"><i class="fas fa-lock"></i> SEO Ready</div>
+        <div class="trust-bar-track">
+            <div class="trust-bar-group">
+                <div class="trust-item"><i class="fas fa-palette"></i> Modern Design</div>
+                <div class="trust-item"><i class="fas fa-bolt"></i> Fast Loading</div>
+                <div class="trust-item"><i class="fas fa-mobile-alt"></i> Mobile Optimized</div>
+                <div class="trust-item"><i class="fas fa-lock"></i> SEO Ready</div>
+            </div>
+            <div class="trust-bar-group" aria-hidden="true">
+                <div class="trust-item"><i class="fas fa-palette"></i> Modern Design</div>
+                <div class="trust-item"><i class="fas fa-bolt"></i> Fast Loading</div>
+                <div class="trust-item"><i class="fas fa-mobile-alt"></i> Mobile Optimized</div>
+                <div class="trust-item"><i class="fas fa-lock"></i> SEO Ready</div>
+            </div>
         </div>
     </div>
 
@@ -1495,7 +1663,7 @@
                             <div class="browser-url">dentalclinic.com</div>
                         </div>
                         <div class="browser-body">
-                            <img src="dental_img.png" alt="dental_img">
+                            <img src="dental_img.png" alt="Dental Clinic Website Preview">
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1514,7 +1682,7 @@
                             <div class="browser-url">constructionco.com</div>
                         </div>
                         <div class="browser-body">
-                            <img src="construction_img.png" alt="construction_img">
+                            <img src="construction_img.png" alt="Construction Company Website Preview">
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1533,7 +1701,7 @@
                             <div class="browser-url">lawfirm.com</div>
                         </div>
                         <div class="browser-body">
-                            <img src="lawfirm_img.png" alt="lawfirm_img">
+                            <img src="lawfirm_img.png" alt="Law Firm Website Preview">
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1551,7 +1719,7 @@
         <div class="section-inner">
             <div class="text-center reveal">
                 <span class="section-label">Why Exazen</span>
-                <h2 class="section-title">Built to Convert & Impress</h2>
+                <h2 class="section-title">Built to Convert &amp; Impress</h2>
                 <p class="section-subtitle">We combine design excellence with business strategy to deliver websites that actually grow your revenue.</p>
             </div>
             <div class="why-grid">
@@ -1574,39 +1742,6 @@
                     <div class="why-icon"><i class="fas fa-layer-group"></i></div>
                     <h3>Modern UI/UX</h3>
                     <p>Clean, intuitive interfaces that provide an exceptional user experience across all devices.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section" id="process" style="background: rgba(255,255,255,0.01);">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <span class="section-label">How It Works</span>
-                <h2 class="section-title">Our Simple 4-Step Process</h2>
-                <p class="section-subtitle">From initial consultation to launch — we make the journey smooth and transparent.</p>
-            </div>
-            <div class="process-timeline">
-                <div class="process-step reveal">
-                    <div class="process-number">1</div>
-                    <h3>Discovery Call</h3>
-                    <p>We discuss your goals, target audience, and vision to understand your business deeply.</p>
-                </div>
-                <div class="process-step reveal reveal-delay-1">
-                    <div class="process-number">2</div>
-                    <h3>Design</h3>
-                    <p>We craft a stunning, custom design tailored to your brand with revision rounds.</p>
-                </div>
-                <div class="process-step reveal reveal-delay-2">
-                    <div class="process-number">3</div>
-                    <h3>Development</h3>
-                    <p>Your design comes to life with clean, fast, and responsive code built to convert.</p>
-                </div>
-                <div class="process-step reveal reveal-delay-3">
-                    <div class="process-number">4</div>
-                    <h3>Launch</h3>
-                    <p>We deploy your website, test everything thoroughly, and celebrate your new online presence.</p>
                 </div>
             </div>
         </div>
@@ -1684,18 +1819,18 @@
                 <h2 class="section-title">Frequently Asked Questions</h2>
                 <p class="section-subtitle">Quick answers to common questions about working with Exazen.</p>
             </div>
-            <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
-                <div class="service-card reveal" style="padding: 1.5rem;">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">How long does it take to build a website?</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Most projects take 2-4 weeks depending on complexity. We'll give you a clear timeline after our discovery call.</p>
+            <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem;">
+                <div class="service-card reveal" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.4;">How long does it take to build a website?</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">Most projects take 2-4 weeks depending on complexity. We'll give you a clear timeline after our discovery call.</p>
                 </div>
-                <div class="service-card reveal reveal-delay-1" style="padding: 1.5rem;">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Do you provide website hosting and domain services?</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Yes! We can handle everything from domain registration to hosting setup and ongoing maintenance.</p>
+                <div class="service-card reveal reveal-delay-1" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.4;">Do you provide website hosting and domain services?</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">Yes! We can handle everything from domain registration to hosting setup and ongoing maintenance.</p>
                 </div>
-                <div class="service-card reveal reveal-delay-2" style="padding: 1.5rem;">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.4rem;">Will my website be mobile-friendly?</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Absolutely. Every website we build is fully responsive and looks stunning on all devices.</p>
+                <div class="service-card reveal reveal-delay-2" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.4;">Will my website be mobile-friendly?</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">Absolutely. Every website we build is fully responsive and looks stunning on all devices.</p>
                 </div>
             </div>
         </div>
@@ -1913,14 +2048,12 @@
         document.querySelectorAll('.hero-content .reveal, .hero .browser-mockup').forEach(el => {
             el.classList.add('visible');
         });
-        // Add reveal class to hero elements if not already
         if (!document.querySelector('.hero-content').classList.contains('reveal')) {
             document.querySelector('.hero-content').classList.add('reveal', 'visible');
             document.querySelector('.browser-mockup').classList.add('reveal', 'visible');
         }
     });
 
-    // Manually trigger initial visible elements
     setTimeout(() => {
         document.querySelectorAll('.hero-content, .browser-mockup').forEach(el => {
             el.classList.add('visible');
