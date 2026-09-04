@@ -58,6 +58,11 @@
             min-height: 100vh;
         }
 
+        body.splash-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+
         ::selection {
             background: var(--purple-primary);
             color: var(--white);
@@ -77,6 +82,211 @@
             background: var(--purple-secondary);
         }
 
+        /* ===== SPLASH SCREEN ===== */
+        .splash {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0D0D0D;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, visibility;
+        }
+
+        .splash.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-bg {
+            position: absolute;
+            inset: -40px;
+            background-image: url('no.jpg'); /* Use same image as hero for consistency */
+            background-size: cover;
+            background-position: center;
+            filter: blur(24px);
+            transform: scale(1.08);
+            animation: splashSlowZoom 6s ease-out forwards;
+            will-change: transform, filter;
+        }
+
+        @keyframes splashSlowZoom {
+            0% {
+                transform: scale(1.08);
+                filter: blur(24px);
+            }
+            100% {
+                transform: scale(1.18);
+                filter: blur(28px);
+            }
+        }
+
+        .splash-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(13, 13, 13, 0.75) 0%,
+                    rgba(13, 13, 13, 0.55) 40%,
+                    rgba(13, 13, 13, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .splash-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--purple-glow), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+            animation: splashGlowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes splashGlowPulse {
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        .splash-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            opacity: 0;
+            animation: splashFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            padding: 2rem;
+        }
+
+        @keyframes splashFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .splash-logo {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.5rem;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3),
+                0 0 60px rgba(124, 58, 237, 0.15);
+            animation: splashLogoPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes splashLogoPulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3),
+                    0 0 60px rgba(124, 58, 237, 0.15);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(124, 58, 237, 0.5),
+                    0 0 80px rgba(124, 58, 237, 0.25);
+            }
+        }
+
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .splash-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #FFFFFF, #E0D5F5, var(--purple-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .splash-tagline {
+            font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 2.25rem;
+        }
+
+        .splash-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .splash-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--purple-secondary);
+            animation: splashDotPulse 1.4s ease-in-out infinite;
+        }
+
+        .splash-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .splash-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes splashDotPulse {
+            0%,
+            100% {
+                opacity: 0.25;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .splash-skip {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .splash:hover .splash-skip {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         /* ===== NAVIGATION ===== */
         .navbar {
             position: fixed;
@@ -89,15 +299,14 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-subtle);
+            background: transparent;
             transition: var(--transition);
         }
 
         .navbar.scrolled {
             background: rgba(13, 13, 13, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
@@ -278,7 +487,7 @@
             pointer-events: all;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION with Background Image ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -291,6 +500,30 @@
             overflow: hidden;
         }
 
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            background-image: url('background.jpg'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px);
+            transform: scale(1.1);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                rgba(13, 13, 13, 0.85) 0%,
+                rgba(13, 13, 13, 0.6) 50%,
+                rgba(13, 13, 13, 0.85) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
         .hero-bg-grid {
             position: absolute;
             inset: 0;
@@ -301,7 +534,7 @@
             mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
             -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
         }
 
         .hero-glow {
@@ -309,7 +542,7 @@
             border-radius: 50%;
             filter: blur(80px);
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
         }
 
         .hero-glow-1 {
@@ -345,7 +578,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 850px;
         }
 
@@ -459,7 +692,7 @@
         /* Browser Mockup */
         .browser-mockup {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 700px;
             width: 100%;
             margin: 0 auto;
@@ -602,7 +835,6 @@
             z-index: 2;
             overflow: hidden;
             cursor: default;
-            /* Premium fade edges */
             -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
             mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
@@ -653,7 +885,6 @@
             position: relative;
         }
 
-        /* Premium separator dot between items */
         .trust-item:not(:last-child)::after {
             content: '';
             position: absolute;
@@ -1460,6 +1691,15 @@
                 width: 36px;
                 height: 36px;
             }
+            .splash-logo {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                margin-bottom: 1.25rem;
+            }
+            .splash-tagline {
+                margin-bottom: 1.75rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1494,10 +1734,45 @@
                 width: 32px;
                 height: 32px;
             }
+            .splash-title {
+                font-size: 2rem;
+            }
+            .splash-logo {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+            }
+            .splash-tagline {
+                font-size: 0.7rem;
+                letter-spacing: 0.05em;
+            }
+            .splash-dots {
+                margin-bottom: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- SPLASH SCREEN -->
+    <div class="splash" id="splash" aria-hidden="true">
+        <div class="splash-bg"></div>
+        <div class="splash-overlay"></div>
+        <div class="splash-glow"></div>
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="logo.png" alt="Exazen Logo">
+            </div>
+            <h1 class="splash-title">exazen</h1>
+            <p class="splash-tagline">Premium Web Design Agency</p>
+            <div class="splash-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p class="splash-skip">Click anywhere to enter</p>
+        </div>
+    </div>
 
     <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
@@ -1537,8 +1812,10 @@
         <a href="#contact" class="nav-cta">Get a Free Audit</a>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION with Background Image -->
     <section class="hero" id="home">
+        <div class="hero-bg-image"></div>
+        <div class="hero-bg-overlay"></div>
         <div class="hero-bg-grid"></div>
         <div class="hero-glow hero-glow-1"></div>
         <div class="hero-glow hero-glow-2"></div>
@@ -1549,11 +1826,10 @@
                 Premium Web Design Agency
             </div>
             <h1>
-                Every Great Business<br>Deserves a <span class="gradient-text">Great Website.</span>
+                Pretty doesn't <span class="gradient-text">book appointments.</span>
             </h1>
             <p class="hero-subheadline">
-                We design fast, modern websites that help businesses build trust,
-                attract more customers, and grow online.
+                A software company that builds websites that do.
             </p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">
@@ -1669,7 +1945,7 @@
                     <div class="portfolio-info">
                         <h3>Dental Clinic Website</h3>
                         <p>A modern, patient-friendly website with online appointment booking and service pages.</p>
-                        <a href="https://exazendemo.framer.website/" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://dentalclinic101.framer.website/" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1904,6 +2180,46 @@
 </footer>
 
 <script>
+    // ===== SPLASH SCREEN =====
+    const splash = document.getElementById('splash');
+    const bodyEl = document.body;
+    let splashRemoved = false;
+
+    bodyEl.classList.add('splash-active');
+
+    function dismissSplash() {
+        if (splashRemoved) return;
+        splashRemoved = true;
+        splash.classList.add('fade-out');
+        bodyEl.classList.remove('splash-active');
+        setTimeout(() => {
+            splash.remove();
+        }, 950);
+    }
+
+    const autoDismissTimer = setTimeout(dismissSplash, 3200);
+
+    splash.addEventListener('click', () => {
+        clearTimeout(autoDismissTimer);
+        dismissSplash();
+    });
+
+    window.addEventListener('keydown', function handleSplashKey(e) {
+        if (!splashRemoved && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) {
+            e.preventDefault();
+            clearTimeout(autoDismissTimer);
+            dismissSplash();
+        }
+    });
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            if (!splashRemoved) {
+                dismissSplash();
+            }
+        }, 1500);
+    });
+
     // ===== NAVBAR SCROLL EFFECT =====
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -2045,13 +2361,9 @@
 
     // ===== PRELOAD REVEAL ON PAGE LOAD =====
     window.addEventListener('load', () => {
-        document.querySelectorAll('.hero-content .reveal, .hero .browser-mockup').forEach(el => {
+        document.querySelectorAll('.hero-content, .browser-mockup').forEach(el => {
             el.classList.add('visible');
         });
-        if (!document.querySelector('.hero-content').classList.contains('reveal')) {
-            document.querySelector('.hero-content').classList.add('reveal', 'visible');
-            document.querySelector('.browser-mockup').classList.add('reveal', 'visible');
-        }
     });
 
     setTimeout(() => {
